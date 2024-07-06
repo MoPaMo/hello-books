@@ -1,7 +1,7 @@
 <template>
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to HelloBooks" />
-    <SingleBook book="featuredBook" />
+    <SingleBook :book="featuredBook" />
 </template>
 
 <script>
