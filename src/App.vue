@@ -19,7 +19,7 @@ export default {
             featuredBook: {
                 title: "The Great Gatsby",
                 author: "F. Scott Fitzgerald",
-                coverUrl: "/images/great-gatsby-cover.jpg",
+                coverUrl: "https://m.media-amazon.com/images/I/81QuEGw8VPL._AC_UF894,1000_QL80_.jpg",
                 rating: "4.5",
                 genre: "Classic Literature"
             }
@@ -36,5 +36,10 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+}
+
+.book-recommendation {
+    max-width: 300px;
+    margin: 20px auto;
 }
 </style>
