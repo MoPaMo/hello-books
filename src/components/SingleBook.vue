@@ -1,18 +1,16 @@
 <template>
-    <div class="book-item">
-        <div class="what-to-read">WHAT TO READ</div>
-        <h2 class="book-title">{{ book.title }}</h2>
-        <h3 class="book-author">{{ book.author }}</h3>
-        <div class="book-cover">
-            <img :src="book.coverUrl" :alt="book.title">
-            <div class="book-rating">
-                {{ book.rating }}
-                <span class="rating-label">Rating</span>
+
+    <div class="bg-card p-4 rounded-lg shadow-md max-w-md mx-auto">
+        <h2 class="text-primary text-sm font-semibold mb-1">WHAT TO READ</h2>
+        <h1 class="text-foreground text-2xl font-bold">{{ book.title }}</h1>
+        <h3 class="text-muted-foreground text-lg mb-4">{{ book.author }}</h3>
+        <img class="w-full h-48 object-cover rounded-lg mb-4" :src="book.coverUrl" :alt="book.title" />
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-card-foreground font-semibold">{{ book.title }}: A Classic Novel</p>
+                <p class="text-muted-foreground text-sm">{{ book.genre }}</p>
             </div>
-        </div>
-        <div class="book-info">
-            <span class="book-genre">{{ book.genre }}</span>
-            <button class="get-button">Get</button>
+            <button class="bg-primary text-primary-foreground py-2 px-4 rounded-lg">Get</button>
         </div>
     </div>
 </template>
@@ -29,73 +27,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.book-item {
-    background-color: #1e1e1e;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.what-to-read {
-    color: #3a8eff;
-    font-size: 0.8em;
-    margin-bottom: 10px;
-}
-
-.book-title {
-    font-size: 1.8em;
-    margin: 5px 0;
-}
-
-.book-author {
-    font-size: 1.2em;
-    color: #a0a0a0;
-    margin: 5px 0 15px 0;
-}
-
-.book-cover {
-    position: relative;
-    margin-bottom: 15px;
-}
-
-.book-cover img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.book-rating {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 1.2em;
-}
-
-.rating-label {
-    font-size: 0.7em;
-    display: block;
-}
-
-.book-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.book-genre {
-    font-size: 0.9em;
-}
-
-.get-button {
-    background-color: #3a8eff;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 1em;
-    cursor: pointer;
-}
-</style>
+<style scoped></style>
