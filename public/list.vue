@@ -46,7 +46,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+    name: 'BookList',
+    props: {
+        books: {
+            type: Object,
+            required: true
+        }
+    }
+}
 </script>
 
 <style scoped></style>
