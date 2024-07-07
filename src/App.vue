@@ -2,17 +2,21 @@
     <HelloWorld msg="Welcome to HelloBooks" />
     <SingleBook :book="featuredBook" />
     <BookList :books="books" />
+    <XLCategories />
 </template>
 
 <script>
 import SingleBook from './components/SingleBook.vue'
 import BookList from './components/list.vue'
+import XLCategories from './components/XLCategories.vue'
 
 export default {
     name: 'App',
     components: {
         SingleBook,
-        BookList
+        BookList,
+        XLCategories
+
     },
     data() {
         return {
