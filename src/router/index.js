@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import XLCategories from "./../components/XLCategories.vue";
 import NotFound from "./../views/NotFound.vue";
+import FictionView from "./../views/Fiction.vue";
 
 const routes = [
   {
@@ -8,6 +9,7 @@ const routes = [
     name: "Home",
     component: XLCategories,
   },
+  { path: "/fiction", name: "Fiction", component: FictionView },
 
   //404 must be last
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
