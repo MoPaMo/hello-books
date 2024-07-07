@@ -1,21 +1,7 @@
 <template>
     <div class="bg-white">
         <div class="pt-6">
-            <nav aria-label="Breadcrumb">
-                <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                    <li v-for="(crumb, index) in breadcrumbs" :key="index">
-                        <div class="flex items-center">
-                            <a :href="crumb.href"
-                                :class="crumb.current ? 'font-medium text-gray-500 hover:text-gray-600' : 'mr-2 text-sm font-medium text-gray-900'">{{
-                        crumb.text }}</a>
-                            <svg v-if="!crumb.current" width="16" height="20" viewBox="0 0 16 20" fill="currentColor"
-                                aria-hidden="true" class="h-5 w-4 text-gray-300">
-                                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                            </svg>
-                        </div>
-                    </li>
-                </ol>
-            </nav>
+            <NavBreadcrumb :breadcrumbs="breadcrumbs" />
             <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
                 <div v-for="(image, index) in images" :key="index" :class="image.class">
                     <img :src="image.src" :alt="image.alt" class="h-full w-full object-cover object-center">
@@ -45,7 +31,7 @@
                             </div>
                             <p class="sr-only">{{ rating }} out of 5 stars</p>
                             <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">{{
-                        reviewCount }} reviews</a>
+                reviewCount }} reviews</a>
                         </div>
                     </div>
 
@@ -128,8 +114,10 @@
 </template>
 
 <script>
+import NavBreadcrumb from './breadcrumb.vue';
 export default {
     name: 'BookPage',
+    components: { NavBreadcrumb },
     data() {
         return {
             breadcrumbs: [
