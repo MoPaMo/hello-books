@@ -8,7 +8,10 @@ const routes = [
     name: "Home",
     component: XLCategories,
   },
+
+  //404 must be last
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
+  //404 must be last!
 ];
 
 const router = createRouter({
