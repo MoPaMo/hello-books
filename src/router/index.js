@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import XLCategories from "./../components/XLCategories.vue";
 import NotFound from "./../views/NotFound.vue";
 import FictionView from "./../views/Fiction.vue";
-import NonFictionView from "@/views/NonFiction.vue"
+import NonFictionView from "@/views/NonFiction.vue";
+import SearchPage from "@/views/Search.vue"
+
 const routes = [
   {
     path: "/",
@@ -11,6 +13,8 @@ const routes = [
   },
   { path: "/fiction", name: "Fiction", component: FictionView },
 { path: "/nonfiction", name: "Non-Fiction", component: NonFictionView },
+{ path: "/search", name: "Search", component: SearchPage },
+
   //404 must be last
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
   //404 must be last!
