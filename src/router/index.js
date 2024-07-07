@@ -8,11 +8,7 @@ const routes = [
     name: "Home",
     component: XLCategories,
   },
-  {
-    path: "*",
-    name: "NotFound",
-    component: NotFound,
-  },
+  { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 
 const router = createRouter({
