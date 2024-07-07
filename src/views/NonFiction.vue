@@ -17,7 +17,7 @@ import XLCategories from '@/components/XLCategories.vue';
 import list from '@/components/list.vue';
 
 export default {
-  name: 'NonFictionView',
+  name: ' NonFictionView',
   components: {
     XLCategories,
     list
