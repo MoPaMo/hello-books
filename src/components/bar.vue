@@ -1,12 +1,14 @@
 <template>
     <div
         class="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 flex justify-around py-2">
-        <button v-for="(item, index) in items" :key="index" @click="setHighlight(index)"
-            class="flex flex-col items-center"
-            :class="{ 'text-blue-500 dark:text-blue-400': highlightedIndex === index }">
-            <img :src="item.imgSrc" :alt="item.text" />
-            <span class="text-xs">{{ item.text }}</span>
-        </button>
+        <router-link v-for="(item, index) in items" :key="index" :to="item.route" custom v-slot="{ navigate }">
+            <button @click="setHighlight(index, navigate)" class="flex flex-col items-center" :class="{
+            'text-blue-500 dark:text-blue-400': highlightedIndex === index,
+        }">
+                <img :src="item.imgSrc" :alt="item.text" />
+                <span class="text-xs">{{ item.text }}</span>
+            </button>
+        </router-link>
     </div>
 </template>
 
@@ -15,19 +17,41 @@ export default {
     name: 'Bar',
     data() {
         return {
-            highlightedIndex: 1,
+            highlightedIndex: 0,
             items: [
-                { text: 'Today', imgSrc: 'https://placehold.co/24x24' },
-                { text: 'Fiction', imgSrc: 'https://placehold.co/24x24?text=✨' },
-                { text: 'Non-Fiction', imgSrc: 'https://placehold.co/24x24' },
-                { text: 'Classics', imgSrc: 'https://placehold.co/24x24' },
-                { text: 'Search', imgSrc: 'https://placehold.co/24x24' },
+                { text: 'Today', imgSrc: 'https://placehold.co/24x24', route: '/' },
+                { text: 'Fiction', imgSrc: 'https://placehold.co/24x24?text=✨', route: '/fiction' },
+                { text: 'Non-Fiction', imgSrc: 'https://placehold.co/24x24', route: '/non-fiction' },
+                { text: 'Classics', imgSrc: 'https://placehold.co/24x24', route: '/classics' },
+                { text: 'Search', imgSrc: 'https://placehold.co/24x24', route: '/search' },
             ],
         }
     },
     methods: {
-        setHighlight(index) {
+        setHighlight(index, navigate) {
             this.highlightedIndex = index
+            navigate()
+        },
+    },
+    mounted() {
+        this.setInitialHighlight()
+    },
+    watch: {
+        $route() {
+            this.setInitialHighlight()
+        },
+    },
+    methods: {
+        setHighlight(index, navigate) {
+            this.highlightedIndex = index
+            navigate()
+        },
+        setInitialHighlight() {
+            const currentRoute = this.$route.path
+            const index = this.items.findIndex((item) => item.route === currentRoute)
+            if (index !== -1) {
+                this.highlightedIndex = index
+            }
         },
     },
 }
