@@ -10,13 +10,7 @@ import Bar from './components/bar.vue'
 export default {
     name: 'App',
     components: {
-        SingleBook,
-        BookList,
-        XLCategories,
-        Bar,
-        BookPage
-
-
+        Bar
     },
 
 
