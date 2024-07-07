@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Listitem from '../../public/listitem.vue';
+import Listitem from './listitem.vue';
 
 export default {
     name: 'BookList',
