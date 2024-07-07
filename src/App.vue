@@ -1,9 +1,9 @@
 <template>
-    <HelloWorld msg="Welcome to HelloBooks" />
     <SingleBook :book="featuredBook" />
     <BookList :books="books" />
     <XLCategories />
     <BookPage />
+    <router-view></router-view>
     <Bar />
 </template>
 
