@@ -3,6 +3,7 @@
     <SingleBook :book="featuredBook" />
     <BookList :books="books" />
     <XLCategories />
+    <BookPage />
     <Bar />
 </template>
 
@@ -11,13 +12,16 @@ import SingleBook from './components/SingleBook.vue'
 import BookList from './components/list.vue'
 import XLCategories from './components/XLCategories.vue'
 import Bar from './components/bar.vue'
+import BookPage from './components/bookpage.vue'
 export default {
     name: 'App',
     components: {
         SingleBook,
         BookList,
         XLCategories,
-        Bar
+        Bar,
+        BookPage
+
 
     },
     data() {

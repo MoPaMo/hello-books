@@ -129,6 +129,7 @@
 
 <script>
 export default {
+    name: 'BookPage',
     data() {
         return {
             breadcrumbs: [
