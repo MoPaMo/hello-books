@@ -1,8 +1,5 @@
 <template>
-    <SingleBook :book="featuredBook" />
-    <BookList :books="books" />
-    <XLCategories />
-    <BookPage />
+
     <router-view></router-view>
     <Bar />
 </template>
