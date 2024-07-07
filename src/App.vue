@@ -3,19 +3,21 @@
     <SingleBook :book="featuredBook" />
     <BookList :books="books" />
     <XLCategories />
+    <Bar />
 </template>
 
 <script>
 import SingleBook from './components/SingleBook.vue'
 import BookList from './components/list.vue'
 import XLCategories from './components/XLCategories.vue'
-
+import Bar from './components/bar.vue'
 export default {
     name: 'App',
     components: {
         SingleBook,
         BookList,
-        XLCategories
+        XLCategories,
+        Bar
 
     },
     data() {
