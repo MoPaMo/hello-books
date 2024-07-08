@@ -1,3 +1,4 @@
+
 <template>
   <div class="min-h-screen bg-gray-100 p-4">
     <div class="mb-4">
@@ -13,9 +14,9 @@
     <div v-if="searchResults.length > 0">
       <h2 class="text-lg font-semibold mb-2">Search Results</h2>
       <ul class="bg-white rounded-lg shadow">
-        <li v-for="book in searchResults" :key="book.id" class="p-4 border-b last:border-b-0">
+        <li v-for="book in searchResults" :key="book.key" class="p-4 border-b last:border-b-0">
           <h3 class="font-semibold">{{ book.title }}</h3>
-          <p class="text-sm text-gray-600">{{ book.author }}</p>
+          <p class="text-sm text-gray-600">{{ book.author_name ? book.author_name.join(', ') : 'Unknown Author' }}</p>
         </li>
       </ul>
     </div>
@@ -40,19 +41,23 @@ export default {
     const searchResults = ref([]);
     const isLoading = ref(false);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
+      if (searchQuery.value.trim() === '') {
+        searchResults.value = [];
+        return;
+      }
+
       isLoading.value = true;
-      setTimeout(() => {
-        searchResults.value = [
-          { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-          { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-          { id: 3, title: '1984', author: 'George Orwell' },
-        ].filter(book => 
-          book.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-          book.author.toLowerCase().includes(searchQuery.value.toLowerCase())
-        );
+      try {
+        const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchQuery.value)}`);
+        const data = await response.json();
+        searchResults.value = data.docs.slice(0, 10);
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+        searchResults.value = [];
+      } finally {
         isLoading.value = false;
-      }, 500);
+      }
     };
 
     return {
