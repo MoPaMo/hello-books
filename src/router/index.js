@@ -3,7 +3,7 @@ import XLCategories from "./../components/XLCategories.vue";
 import NotFound from "./../views/NotFound.vue";
 import FictionView from "./../views/Fiction.vue";
 import NonFictionView from "@/views/NonFiction.vue";
-import SearchPage from "@/views/Search.vue"
+import SearchPage from "@/views/Search.vue";
 
 const routes = [
   {
@@ -12,8 +12,10 @@ const routes = [
     component: XLCategories,
   },
   { path: "/fiction", name: "Fiction", component: FictionView },
-{ path: "/nonfiction", name: "Non-Fiction", component: NonFictionView },
-{ path: "/search", name: "Search", component: SearchPage },
+
+  { path: "/non-fiction", name: "Non-Fiction", component: NonFictionView },
+
+  { path: "/search", name: "Search", component: SearchPage },
 
   //404 must be last
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
