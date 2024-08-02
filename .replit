@@ -1,0 +1,10 @@
+modules = ["vue-node-20", "web", "nodejs-20"]
+entrypoint = "npm run serve"
+run = ["npm","run", "serve"]
+[nix]
+channel = "stable-24_05"
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
+
