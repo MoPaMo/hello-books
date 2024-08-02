@@ -15,8 +15,9 @@
       <h2 class="text-lg font-semibold mb-2">Search Results</h2>
       <ul class="bg-white rounded-lg shadow">
         <li v-for="book in searchResults" :key="book.key" class="p-4 border-b last:border-b-0">
+          <RouterLink :to="`/book/${book.key.split('/').pop()}`">
           <h3 class="font-semibold">{{ book.title }}</h3>
-          <p class="text-sm text-gray-600">{{ book.author_name ? book.author_name.join(', ') : 'Unknown Author' }}</p>
+          <p class="text-sm text-gray-600">{{ book.author_name ? book.author_name.join(', ') : 'Unknown Author' }}</p></RouterLink>
         </li>
       </ul>
     </div>

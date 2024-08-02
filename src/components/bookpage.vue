@@ -21,17 +21,6 @@
                     </div>
 
                     <div class="mt-10">
-                        <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-                        <div class="mt-4">
-                            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-                                <li v-for="highlight in highlights" :key="highlight" class="text-gray-400">
-                                    <span class="text-gray-600">{{ highlight }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-10">
                         <h2 class="text-sm font-medium text-gray-900">Details</h2>
                         <div class="mt-4 space-y-6">
                             <p class="text-sm text-gray-600">
@@ -78,24 +67,42 @@ export default {
             try {
                 const response = await fetch(`https://openlibrary.org/works/${openlibraryKey}.json`);
                 const data = await response.json();
+                console.log(data); // Log the fetched data to inspect its structure
                 this.updateBookData(data);
             } catch (error) {
                 console.error('Error fetching book data:', error);
             }
         },
-        updateBookData(data) {
+        async fetchAuthorData(authorKey) {
+            try {
+                const response = await fetch(`https://openlibrary.org${authorKey}.json`);
+                const data = await response.json();
+                return data.name || '';
+            } catch (error) {
+                console.error('Error fetching author data:', error);
+                return '';
+            }
+        },
+        async updateBookData(data) {
             this.breadcrumbs = [
                 { text: 'Home', href: '/', current: false },
                 { text: 'Books', href: '/books', current: false },
                 { text: data.title, href: '#', current: true }
             ];
-            this.bookTitle = data.title;
-            this.description = data.description ? data.description.value || data.description : '';
-            this.author = data.authors ? data.authors[0].name : '';
-            this.publisher = data.publishers ? data.publishers[0] : '';
-            this.publicationDate = data.created ? new Date(data.created.value).toLocaleDateString() : '';
-            this.pages = data.number_of_pages || '';
-            this.isbn = data.isbn_13 ? data.isbn_13[0] : data.isbn_10 ? data.isbn_10[0] : '';
+            this.bookTitle = data.title || 'Unknown Title';
+            this.description = data.description ? data.description.value || data.description : 'No description available';
+
+            if (data.authors && data.authors.length > 0) {
+                const authorData = await this.fetchAuthorData(data.authors[0].author.key);
+                this.author = authorData;
+            } else {
+                this.author = 'Unknown Author';
+            }
+
+            this.publisher = data.publishers ? data.publishers[0] : 'Unknown Publisher';
+            this.publicationDate = data.created ? new Date(data.created.value).toLocaleDateString() : 'Unknown Publication Date';
+            this.pages = data.number_of_pages || 'Unknown Page Count';
+            this.isbn = data.isbn_13 ? data.isbn_13[0] : data.isbn_10 ? data.isbn_10[0] : 'No ISBN available';
             this.images = data.covers ? data.covers.map(cover => ({
                 src: `https://covers.openlibrary.org/b/id/${cover}-L.jpg`,
                 alt: `Cover image of ${data.title}`,
@@ -108,5 +115,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

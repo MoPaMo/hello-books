@@ -38,7 +38,7 @@ export default {
             try {
                 const response = await axios.get('https://openlibrary.org/subjects/fiction.json?limit=10');
                 this.books = response.data.works.map(work => ({
-                    id: work.cover_edition_key,
+                    id: work.key.split("/").pop(),
                     title: work.title,
                     author: work.authors.map(author => author.name).join(', ')
                 }));

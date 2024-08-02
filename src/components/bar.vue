@@ -20,10 +20,11 @@ export default {
             highlightedIndex: 0,
             items: [
                 
-                { text: 'Fiction', imgSrc: 'https://placehold.co/24x24?text=✨', route: '/fiction' },
-                { text: 'Non-Fiction', imgSrc: 'https://placehold.co/24x24', route: '/non-fiction' },
-                { text: 'Classics', imgSrc: 'https://placehold.co/24x24', route: '/book' },
-                { text: 'Search', imgSrc: 'https://placehold.co/24x24', route: '/search' },
+                { text: 'Fiction', imgSrc: 'https://placehold.co/24x24?text=F', route: '/fiction' },
+                { text: 'Non-Fiction', imgSrc: 'https://placehold.co/24x24?text=N', route: '/non-fiction' },
+                
+                    
+                { text: 'Search', imgSrc: 'https://placehold.co/24x24?text=S', route: '/search' },
             ],
         }
     },

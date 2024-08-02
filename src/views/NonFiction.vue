@@ -36,7 +36,7 @@ export default {
       try {
         const response = await axios.get('https://openlibrary.org/subjects/nonfiction.json?limit=10');
         this.books = response.data.works.map(book => ({
-          id: book.key,
+          id: book.key.split("/").pop(),
           title: book.title,
           author: book.authors ? book.authors[0].name : 'Unknown Author'
         }));
