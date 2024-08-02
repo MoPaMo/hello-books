@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import XLCategories from '@/components/XLCategories.vue';
 import list from '@/components/list.vue';
 
@@ -26,13 +27,25 @@ export default {
     },
     data() {
         return {
-            books: [
-                // sample book data
-                { id: 1, title: '1984', author: 'George Orwell' },
-                { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-                { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-            ]
+            books: []
         };
+    },
+    created() {
+        this.fetchFictionBooks();
+    },
+    methods: {
+        async fetchFictionBooks() {
+            try {
+                const response = await axios.get('https://openlibrary.org/subjects/fiction.json?limit=10');
+                this.books = response.data.works.map(work => ({
+                    id: work.cover_edition_key,
+                    title: work.title,
+                    author: work.authors.map(author => author.name).join(', ')
+                }));
+            } catch (error) {
+                console.error('Error fetching fiction books:', error);
+            }
+        }
     }
 };
 </script>
