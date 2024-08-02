@@ -4,7 +4,7 @@ import NotFound from "./../views/NotFound.vue";
 import FictionView from "./../views/Fiction.vue";
 import NonFictionView from "@/views/NonFiction.vue";
 import SearchPage from "@/views/Search.vue";
-
+import BookPage from "@/components/bookpage.vue";
 const routes = [
   {
     path: "/",
@@ -16,7 +16,11 @@ const routes = [
   { path: "/non-fiction", name: "Non-Fiction", component: NonFictionView },
 
   { path: "/search", name: "Search", component: SearchPage },
-
+  {
+    path: '/book/:openlibraryKey',
+    name: 'BookPage',
+    component: BookPage
+  },
   //404 must be last
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
   //404 must be last!

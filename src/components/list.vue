@@ -5,7 +5,9 @@
             <a href="#" class="text-primary hover:underline">See All</a>
         </div>
         <div class="space-y-4">
-            <Listitem v-for="book in books" :key="book.title" :book="book" />
+            <RouterLink v-for="book in books" :key="book.id" :to="`/book/${book.id}`">
+              <Listitem :book="book" />
+            </RouterLink>
         </div>
     </div>
 </template>
