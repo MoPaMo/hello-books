@@ -19,10 +19,10 @@ export default {
         return {
             highlightedIndex: 0,
             items: [
-                { text: 'Today', imgSrc: 'https://placehold.co/24x24', route: '/' },
+                
                 { text: 'Fiction', imgSrc: 'https://placehold.co/24x24?text=✨', route: '/fiction' },
                 { text: 'Non-Fiction', imgSrc: 'https://placehold.co/24x24', route: '/non-fiction' },
-                { text: 'Classics', imgSrc: 'https://placehold.co/24x24', route: '/classics' },
+                { text: 'Classics', imgSrc: 'https://placehold.co/24x24', route: '/book' },
                 { text: 'Search', imgSrc: 'https://placehold.co/24x24', route: '/search' },
             ],
         }

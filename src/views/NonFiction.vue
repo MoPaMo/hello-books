@@ -13,23 +13,37 @@
 </template>
 
 <script>
+import axios from 'axios';
 import XLCategories from '@/components/XLCategories.vue';
 import list from '@/components/list.vue';
 
 export default {
-  name: ' NonFictionView',
+  name: 'NonFictionView',
   components: {
     XLCategories,
     list
   },
   data() {
     return {
-      books: [
-        { id: 1, title: 'Sapiens: A Brief History of Humankind', author: 'Yuval Noah Harari' },
-        { id: 2, title: 'Educated', author: 'Tara Westover' },
-        { id: 3, title: 'The Immortal Life of Henrietta Lacks', author: 'Rebecca Skloot' }
-      ]
+      books: []
     };
+  },
+  created() {
+    this.fetchNonfictionBooks();
+  },
+  methods: {
+    async fetchNonfictionBooks() {
+      try {
+        const response = await axios.get('https://openlibrary.org/subjects/nonfiction.json?limit=10');
+        this.books = response.data.works.map(book => ({
+          id: book.key,
+          title: book.title,
+          author: book.authors ? book.authors[0].name : 'Unknown Author'
+        }));
+      } catch (error) {
+        console.error('Error fetching nonfiction books:', error);
+      }
+    }
   }
 };
 </script>
