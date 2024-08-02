@@ -9,7 +9,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: XLCategories,
+    component: FictionView,
   },
   { path: "/fiction", name: "Fiction", component: FictionView },
 
