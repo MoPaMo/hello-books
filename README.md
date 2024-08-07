@@ -1,5 +1,7 @@
 # hello-books
 
+find new books and search for them w/ my first try at PWAs. Also installable! (Share, add to home screen)
+
 ## Project setup
 ```
 npm install
